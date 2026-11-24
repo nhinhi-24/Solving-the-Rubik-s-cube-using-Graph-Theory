@@ -1,4 +1,4 @@
-## Solving the Rubik's cube using graph theory
+## Solving the Rubik's cube using Graph Theory
 
 ## Setup
 Python 3.10 or newer.
@@ -9,7 +9,7 @@ python -m pytest -q        # should print: 81 passed
 python demo.py             # scrambles a cube, prints it, undoes it
 ```
 
-## The cube module (`cube/`): everyone uses only these functions
+## The cube module (`cube/`)
 | Function | What it does |
 |---|---|
 | `SOLVED` / `solved()` | The solved cube (a 54-byte `bytes` object) |
@@ -28,15 +28,6 @@ A state is `bytes`, so it can be put directly into a `set` or used as a `dict` k
 
 Sticker numbering, colours and move directions are explained at the top of `cube/cube.py`.
 
-## What the tests already prove
-- Every face turned 4 times = solved; every move followed by its inverse = solved.
-- `R U R' U'` repeated 6 times = solved; opposite faces commute, adjacent ones do not.
-- Moves turn the correct way (R brings the front up, U brings the right face to the front).
-- One move changes exactly 20 stickers (used to prove the heuristic ⌈cost/20⌉ is admissible).
-- Superflip has cost 24.
-- **BFS from the solved cube gives exactly 1, 18, 243, 3,240, 43,239 states at depths 0–4**,
-  matching the known values for the half-turn metric.
-
 ## Repository plan
 ```
 cube/          cube model 
@@ -49,7 +40,7 @@ tests/         pytest tests (add a test file for every new module)
 demo/          interactive viewer
 ```
 
-## Team rules
+## Rules
 - Never change `cube/` without telling the group and re-running all tests.
 - One branch per person; merge by pull request reviewed by another member.
 - `python -m pytest -q` must pass before every merge.
