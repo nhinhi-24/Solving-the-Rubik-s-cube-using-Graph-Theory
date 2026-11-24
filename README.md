@@ -1,6 +1,4 @@
-# rubik-graph: Solving the Rubik's cube using graph theory
-
-USTH group project 2026–2027 · Supervisor: Lê Xuân Thanh
+## Solving the Rubik's cube using graph theory
 
 ## Setup
 Python 3.10 or newer.
@@ -41,7 +39,7 @@ Sticker numbering, colours and move directions are explained at the top of `cube
 
 ## Repository plan
 ```
-cube/          cube model (done)
+cube/          cube model 
 search/        bfs.py, dls.py, iddfs.py, bidirectional.py, pipeline.py, ida_star.py
 pdb/           corner pattern database
 data/          datasetA_states.csv, datasetB_runs.csv
