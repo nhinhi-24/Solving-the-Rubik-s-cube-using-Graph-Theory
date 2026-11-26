@@ -5,7 +5,7 @@ from cube import SOLVED, MOVE_NAMES, apply_move, allowed_after
 
 
 def count_states_by_depth(max_depth: int = 6) -> list[dict]:
-    visited = {SOLVED} 
+    visited = {SOLVED}    # Track seen states to prevent double-counting
     current_layer = [(SOLVED, None)] 
     results = [
         {
@@ -16,10 +16,11 @@ def count_states_by_depth(max_depth: int = 6) -> list[dict]:
         }
     ]
 
+# BFS loop for each depth
     for d in range(1, max_depth + 1):
         next_layer = []
-
         for state, last_move in current_layer:
+            # Eliminate redundant moves after depth 1
             possible_moves = MOVE_NAMES if last_move is None else allowed_after(last_move)
 
             for move in possible_moves:
@@ -30,7 +31,7 @@ def count_states_by_depth(max_depth: int = 6) -> list[dict]:
                     next_layer.append((new_state, move))
 
         exact_count = len(next_layer)
-        paper_count = 18 * (15 ** (d - 1))
+        paper_count = 18 * (15 ** (d - 1))    # Paper's theoretical formula
 
         print(f"Depth {d}: Exact = {exact_count:,} | Paper formula = {paper_count:,}")
         results.append(
@@ -45,7 +46,7 @@ def count_states_by_depth(max_depth: int = 6) -> list[dict]:
 
     return results
 
-# save data 
+# Save layer counts 
 def save_layer_counts(results: list[dict], filepath: str = "data/layer_counts.csv") -> None:
     """Save the layer count results to a CSV file."""
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
